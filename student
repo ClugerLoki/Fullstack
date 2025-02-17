@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculate Student Marks</h2>
+        <label>Internal Marks (out of 100):</label>
+        <input type="number" id="internalMarks" min="0" max="100"><br><br>
+        <label>External Marks (out of 100):</label>
+        <input type="number" id="externalMarks" min="0" max="100"><br><br>
+        
+        <h3>Select Weightage</h3>
+        <button onclick="setWeightage(40, 60)">40/60</button>
+        <button onclick="setWeightage(30, 70)">30/70</button>
+        <button onclick="setWeightage(20, 80)">20/80</button>
+        
+        <h4>Selected Weightage:</h4>
+        <p>Internal: <span id="internalWeight">-</span>% | External: <span id="externalWeight">-</span>%</p>
+        
+        <button onclick="calculateMarks()">Calculate</button>
+        
+        <h3>Final Marks:</h3>
+        <p id="finalMarks">-</p>
+    </div>
+    
+    <script>
+        let internalWeight = 0, externalWeight = 0;
+
+        function setWeightage(intW, extW) {
+            internalWeight = intW;
+            externalWeight = extW;
+            document.getElementById("internalWeight").innerText = intW;
+            document.getElementById("externalWeight").innerText = extW;
+        }
+
+        function calculateMarks() {
+            let internalMarks = parseFloat(document.getElementById("internalMarks").value) || 0;
+            let externalMarks = parseFloat(document.getElementById("externalMarks").value) || 0;
+            
+            if (internalWeight === 0 || externalWeight === 0) {
+                alert("Please select a weightage ratio first!");
+                return;
+            }
+            
+            let finalScore = ((internalMarks * internalWeight) / 100) + ((externalMarks * externalWeight) / 100);
+            document.getElementById("finalMarks").innerText = finalScore.toFixed(2);
+        }
+    </script>
+</body>
+</html>
