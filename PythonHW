@@ -1,0 +1,141 @@
+world_animal=['ANACONDA', 'PLATIPUS', 'RED PANDA', 'BEARE', 'KILLER WHALE', 'PLATIPUS', 'CAMELS', 'POLAR BEAR', 'KING PERGVIN', 'SNOW LEAPORD', 'ZEBRA', 'PLAINS BISON' ]
+
+WORLD_BIOMES=['TROPICAL RAINFOREST', 'TEMPERATE FOREST', 'TAIGA', 'MARINE', 'FRESHWATER', 'DESERT', 'ARCTIC TUNDRA', 'ANTARTICA TUNCHA', 'ALPINE TUNDRA', 'TROPICAL GRASSLAND', 'TEMPEARTE GRASSLAND']
+
+
+k =len(world_animal)
+l=len(WORLD_BIOMES)
+
+print(f"Q1.The lengths are {k},{l}")
+
+m=world_animal.count('PLATIPUS')
+j=WORLD_BIOMES.count('TAIGA')
+
+print("Q2")
+print(m,j)
+
+
+merge_array=[]
+merge_array=world_animal+WORLD_BIOMES
+print("Q3")
+print(merge_array)
+
+a=world_animal.index('SNOW LEAPORD')
+print("Q4")
+print(a)
+
+print("Q5")
+try:
+    if world_animal.index('ANACOND')>-1:
+        print('true')
+except ValueError:
+    print('false')
+
+reverse_arrary=world_animal[::-1]
+print("Q6")
+print(reverse_arrary)
+
+alternate_list = [item for pair in zip(world_animal, WORLD_BIOMES) for item in pair]
+print("Q7")
+print(alternate_list);
+
+# 8. Insert an item at a given position
+world_animal.insert(3, 'Elephant')
+print("Updated world_animals list after insertion:", world_animal)
+
+# 9. Remove alternate items from a list
+filtered_animals = world_animal[::2]
+filtered_biomes = WORLD_BIOMES[::2]
+print("World animals with alternate elements removed:", filtered_animals)
+print("World biomes with alternate elements removed:", filtered_biomes)
+
+# 10. Combine two lists, but list two items in reverse order
+combined_reversed = world_animal + WORLD_BIOMES[::-1]
+print("Combined list with world_biomes reversed:", combined_reversed)
+
+# 11. Try out the inbuilt functions
+print("Min of world_animals:", min(world_animal))
+print("Max of world_animals:", max(world_animal))
+print("Sum (not applicable for string lists)")
+print("Length of world_animals:", len(world_animal))
+
+world_animal.reverse()
+print("Reversed world_animals:", world_animal)
+
+world_animal.sort()
+print("Sorted world_animals:", world_animal)
+
+world_animal.extend(WORLD_BIOMES)
+print("Extended world_animals:", world_animal)
+
+world_animal.insert(2, "Lion")
+print("After inserting 'Lion' at index 2:", world_animal)
+
+world_animal.append("Tiger")
+print("After appending 'Tiger':", world_animal)
+
+world_animal.clear()
+print("After clearing world_animals:", world_animal)
+
+world_animals = ['Anaconda', 'Platypus', 'Red panda']  # Reset list for demonstration
+del world_animals[1:3]
+print("After deleting items from index 1 to 2:", world_animals)
+
+world_animals.remove('Anaconda')
+print("After removing 'Anaconda':", world_animals)
+
+world_animals = ['Anaconda', 'Platypus', 'Red panda']
+popped_item = world_animals.pop()
+print("Popped item:", popped_item)
+print("List after pop:", world_animals)
+
+
+
+# Example list
+numbers = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+
+# Basic slicing
+print("Original list:", numbers)
+print("Slicing from index 2 to 5:", numbers[2:6])  # elements from index 2 to 5
+print("Slicing with step 2:", numbers[::2])  # every second element
+print("Slicing in reverse:", numbers[::-1])  # reverse the list
+print("Slicing from index 3 to end:", numbers[3:])  # from index 3 to end
+print("Slicing from start to index 4:", numbers[:5])  # from start to index 4
+print("Negative slicing (-5 to -2):", numbers[-5:-2])  # slicing using negative indices
+
+
+# Initializing a nested list (student name and scores)
+students = [
+    ["Aman", [85, 90, 78]],
+    ["Sharma", [88, 76, 92]],
+    ["Mohan", [80, 85, 88]]
+]
+
+# 1. Adding an element to a nested list (Adding a new student)
+new_student = ["Rohan", [75, 80, 70]]
+students.append(new_student)
+print("After adding a new student:", students)
+
+# 2. Deleting an element in a nested list (Removing a student)
+students.remove(["Sharma", [88, 76, 92]])
+print("After removing Sharma:", students)
+
+# 3. Reversing the nested list (Reverse student order)
+students.reverse()
+print("Reversed student list:", students)
+
+# 4. Using loop structures in nested list (Printing all students and scores)
+print("Students and scores:")
+for student in students:
+    print(f"Name: {student[0]}, Scores: {student[1]}")
+
+# 5. Traversing the list using range() and enumerate()
+print("Traversing using range:")
+for i in range(len(students)):
+    print(f"Student {i + 1}: {students[i][0]}, Scores: {students[i][1]}")
+
+print("Traversing using enumerate:")
+for index, student in enumerate(students, start=1):
+    print(f"Student {index}: {student[0]}, Scores: {student[1]}")
+
+
