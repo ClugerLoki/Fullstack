@@ -1,808 +1,265 @@
-Set 1
 
+world_animal=['ANACONDA', 'PLATIPUS', 'RED PANDA', 'BEARE', 'KILLER WHALE', 'PLATIPUS', 'CAMELS', 'POLAR BEAR', 'KING PERGVIN', 'SNOW LEAPORD', 'ZEBRA', 'PLAINS BISON' ]
 
-# Define the lists from the image
-world_animals = ['Anaconda', 'Platypus', 'Red panda', 'Beaver', 'Killer whale', 'platypus', 'Camel', 'Polar bear', 'King penguin', 'Snow leopard', 'Zebra', 'Plains bison']
-world_biomes = ['Tropical Rainforest', 'Temperate Forest', 'Taiga', 'Marine', 'Freshwater', 'Desert', 'Arctic Tundra', 'Antarctic Tundra', 'Alpine Tundra', 'Tropical Grassland', 'Temperate Grassland']
+WORLD_BIOMES=['TROPICAL RAINFOREST', 'TEMPERATE FOREST', 'TAIGA', 'MARINE', 'FRESHWATER', 'DESERT', 'ARCTIC TUNDRA', 'ANTARTICA TUNCHA', 'ALPINE TUNDRA', 'TROPICAL GRASSLAND', 'TEMPEARTE GRASSLAND']
 
 
-# 1. Create a program to calculate and return the length of the given lists
-def calculate_list_length(lst):
-    return len(lst)
+k =len(world_animal)
+l=len(WORLD_BIOMES)
 
+print(f"Q1.The lengths are {k},{l}")
 
-print("1. List lengths:")
-print(f"Length of world_animals: {calculate_list_length(world_animals)}")
-print(f"Length of world_biomes: {calculate_list_length(world_biomes)}")
+m=world_animal.count('PLATIPUS')
+j=WORLD_BIOMES.count('TAIGA')
 
+print("Q2")
+print(m,j)
 
-# 2. Create a program to count up how many times an item appears in a given list
-def count_item_occurrences(lst, item):
-    return lst.count(item)
 
+merge_array=[]
+merge_array=world_animal+WORLD_BIOMES
+print("Q3")
+print(merge_array)
 
-print("\n2. Item occurrences:")
-print(f"'Platypus' occurs {count_item_occurrences(world_animals, 'Platypus')} time(s) in world_animals")
-print(f"'platypus' occurs {count_item_occurrences(world_animals, 'platypus')} time(s) in world_animals")
-print(f"'Taiga' occurs {count_item_occurrences(world_biomes, 'Taiga')} time(s) in world_biomes")
+a=world_animal.index('SNOW LEAPORD')
+print("Q4")
+print(a)
 
+print("Q5")
+try:
+    if world_animal.index('ANACOND')>-1:
+        print('true')
+except ValueError:
+    print('false')
 
-# 3. Write code to merge the two lists into a single list
-def merge_lists(lst1, lst2):
-    return lst1 + lst2
+reverse_arrary=world_animal[::-1]
+print("Q6")
+print(reverse_arrary)
 
+alternate_list = [item for pair in zip(world_animal, WORLD_BIOMES) for item in pair]
+print("Q7")
+print(alternate_list);
 
-merged_list = merge_lists(world_animals, world_biomes)
-print("\n3. Merged list:")
-print(merged_list)
+# 8. Insert an item at a given position
+world_animal.insert(3, 'Elephant')
+print("Updated world_animals list after insertion:", world_animal)
 
+# 9. Remove alternate items from a list
+filtered_animals = world_animal[::2]
+filtered_biomes = WORLD_BIOMES[::2]
+print("World animals with alternate elements removed:", filtered_animals)
+print("World biomes with alternate elements removed:", filtered_biomes)
 
-# 4. Write a program to find the index of the first matching element
-def find_first_index(lst, item):
-    try:
-        return lst.index(item)
-    except ValueError:
-        return -1  # Return -1 if item not found
+# 10. Combine two lists, but list two items in reverse order
+combined_reversed = world_animal + WORLD_BIOMES[::-1]
+print("Combined list with world_biomes reversed:", combined_reversed)
 
+# 11. Try out the inbuilt functions
+print("Min of world_animals:", min(world_animal))
+print("Max of world_animals:", max(world_animal))
+print("Sum (not applicable for string lists)")
+print("Length of world_animals:", len(world_animal))
 
-print("\n4. Finding indices:")
-snow_leopard_index = find_first_index(world_animals, 'Snow leopard')
-print(f"Index of 'Snow leopard' in world_animals: {snow_leopard_index}")
+world_animal.reverse()
+print("Reversed world_animals:", world_animal)
 
+world_animal.sort()
+print("Sorted world_animals:", world_animal)
 
-# 5. Write a program to examine a list for an item
-def is_item_in_list(lst, item):
-    return item in lst
+world_animal.extend(WORLD_BIOMES)
+print("Extended world_animals:", world_animal)
 
+world_animal.insert(2, "Lion")
+print("After inserting 'Lion' at index 2:", world_animal)
 
-print("\n5. Examining lists for items:")
-print(f"'Anaconda' in world_animals: {is_item_in_list(world_animals, 'Anaconda')}")
-print(f"'Tropical Grassland' in world_biomes: {is_item_in_list(world_biomes, 'Tropical Grassland')}")
+world_animal.append("Tiger")
+print("After appending 'Tiger':", world_animal)
 
+world_animal.clear()
+print("After clearing world_animals:", world_animal)
 
-# 6. Write a program to reverse the order of the world_biomes list
-def reverse_list(lst):
-    return lst[::-1]  # Using slicing to reverse
+world_animals = ['Anaconda', 'Platypus', 'Red panda']  # Reset list for demonstration
+del world_animals[1:3]
+print("After deleting items from index 1 to 2:", world_animals)
 
+world_animals.remove('Anaconda')
+print("After removing 'Anaconda':", world_animals)
 
-reversed_biomes = reverse_list(world_biomes)
-print("\n6. Reversed world_biomes:")
-print(reversed_biomes)
+world_animals = ['Anaconda', 'Platypus', 'Red panda']
+popped_item = world_animals.pop()
+print("Popped item:", popped_item)
+print("List after pop:", world_animals)
 
 
-# 7. Write a Python script that concatenates the above given two lists into one with alternate items from each list
-def alternate_merge(lst1, lst2):
-    result = []
-    max_length = max(len(lst1), len(lst2))
-    
-    for i in range(max_length):
-        if i < len(lst1):
-            result.append(lst1[i])
-        if i < len(lst2):
-            result.append(lst2[i])
-    
-    return result
 
+# Example list
+numbers = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
-alternating_list = alternate_merge(world_animals, world_biomes)
-print("\n7. Alternating items from both lists:")
-print(alternating_list)
-
-
-# 8. Write a program to insert an item to the world_animals list at a given position
-def insert_item_at_position(lst, item, position):
-    lst_copy = lst.copy()  # Create a copy to avoid modifying the original
-    lst_copy.insert(position, item)
-    return lst_copy
-
-
-animals_with_elephant = insert_item_at_position(world_animals, 'Elephant', 3)
-print("\n8. world_animals with 'Elephant' inserted at position 3:")
-print(animals_with_elephant)
-
-
-# 9. Write a program to remove alternate items in the lists
-def remove_alternate_items(lst):
-    return lst[::2]  # Using slicing to get every other item
-
-
-print("\n9. Lists with alternate items removed:")
-print("world_animals with alternate items removed:")
-print(remove_alternate_items(world_animals))
-print("world_biomes with alternate items removed:")
-print(remove_alternate_items(world_biomes))
-
-
-# 10. Write a program that combines two lists but the items of the second list are in reverse order
-def combine_with_second_reversed(lst1, lst2):
-    return lst1 + lst2[::-1]
-
-
-combined_with_reversed = combine_with_second_reversed(world_animals, world_biomes)
-print("\n10. Combining lists with the second list reversed:")
-print(combined_with_reversed)
-
-
-# 11. Try out the inbuilt functions mentioned in the exercise
-print("\n11. Using built-in functions:")
-
-
-print(f"min(world_animals): {min(world_animals)}")
-print(f"sum([1, 2, 3, 4, 5]): {sum([1, 2, 3, 4, 5])}")  # sum requires numeric values
-print(f"max(world_biomes): {max(world_biomes)}")
-print(f"len(world_animals): {len(world_animals)}")
-
-
-# Demonstrating list.sort() vs sorted()
-animals_copy = world_animals.copy()
-animals_copy.sort()
-print(f"\nworld_animals after sort(): {animals_copy}")
-
-
-sorted_biomes = sorted(world_biomes)
-print(f"sorted(world_biomes): {sorted_biomes}")
-
-
-# Extending a list
-animals_extended = world_animals.copy()
-animals_extended.extend(['Lion', 'Tiger'])
-print(f"\nworld_animals after extend(): {animals_extended}")
-
-
-# Insert
-animals_with_insert = world_animals.copy()
-animals_with_insert.insert(0, 'Alligator')
-print(f"\nworld_animals after insert(0, 'Alligator'): {animals_with_insert}")
-
-
-# Count
-print(f"\nworld_animals.count('Platypus'): {world_animals.count('Platypus')}")
-
-
-# Append
-animals_with_append = world_animals.copy()
-animals_with_append.append('Giraffe')
-print(f"\nworld_animals after append('Giraffe'): {animals_with_append}")
-
-
-# Clear
-animals_to_clear = world_animals.copy()
-animals_to_clear.clear()
-print(f"\nworld_animals after clear(): {animals_to_clear}")
-
-
-# Del range
-animals_with_del = world_animals.copy()
-del animals_with_del[2:4]
-print(f"\nworld_animals after del[2:4]: {animals_with_del}")
-
-
-# Remove by value
-animals_with_remove = world_animals.copy()
-if 'Camel' in animals_with_remove:
-    animals_with_remove.remove('Camel')
-print(f"\nworld_animals after remove('Camel'): {animals_with_remove}")
-
-
-# Pop
-animals_with_pop = world_animals.copy()
-popped_animal = animals_with_pop.pop()
-print(f"\nPopped animal: {popped_animal}")
-print(f"world_animals after pop(): {animals_with_pop}")
-
-
-# Pop with index
-animals_with_pop_index = world_animals.copy()
-popped_animal_index = animals_with_pop_index.pop(0)
-print(f"\nPopped animal at index 0: {popped_animal_index}")
-print(f"world_animals after pop(0): {animals_with_pop_index}")
-
-
-# Reverse
-animals_reversed = world_animals.copy()
-animals_reversed.reverse()
-print(f"\nworld_animals after reverse(): {animals_reversed}")
-
-
-# Question C: Perform the different types of slicing operations on lists
-
-
-print("C. SLICING OPERATIONS ON LISTS")
-print("-" * 50)
-
-
-# Create a sample list to demonstrate slicing
-fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape", "Honeydew"]
-print(f"Original list: {fruits}")
-
-
-# 1. Basic slicing: list[start:stop]
-print("\n1. Basic slicing (list[start:stop]):")
-print(f"fruits[2:5]: {fruits[2:5]}")  # Elements from index 2 to 4
-
-
-# 2. Slicing with step: list[start:stop:step]
-print("\n2. Slicing with step (list[start:stop:step]):")
-print(f"fruits[0:8:2]: {fruits[0:8:2]}")  # Every other element
-
-
-# 3. Negative indices slicing: counting from the end
-print("\n3. Negative indices slicing:")
-print(f"fruits[-3:]: {fruits[-3:]}")  # Last three elements
-print(f"fruits[-6:-2]: {fruits[-6:-2]}")  # From the 6th last to the 3rd last
-
-
-# 4. Omitting indices
-print("\n4. Omitting indices:")
-print(f"fruits[:4]: {fruits[:4]}")  # First four elements
-print(f"fruits[3:]: {fruits[3:]}")  # From the fourth element to the end
-print(f"fruits[:]: {fruits[:]}") # Creates a copy of the entire list
-
-
-# 5. Negative step (reversing)
-print("\n5. Negative step (reversing):")
-print(f"fruits[::-1]: {fruits[::-1]}")  # Entire list in reverse
-print(f"fruits[5:1:-1]: {fruits[5:1:-1]}")  # From index 5 to 2 in reverse
-
-
-# 6. Using slicing to modify portions of a list
-print("\n6. Using slicing to modify list portions:")
-fruits_copy = fruits.copy()
-fruits_copy[1:4] = ["Blueberry", "Cranberry", "Dragonfruit"]
-print(f"After replacing section: {fruits_copy}")
-
-
-# 7. Using slicing to delete portions
-print("\n7. Using slicing to delete portions:")
-fruits_copy = fruits.copy()
-del fruits_copy[2:5]
-print(f"After deleting fruits[2:5]: {fruits_copy}")
-
-
-# 8. Extended slices with other data types
-print("\n8. Extended slices with other data types:")
-sample_string = "Python Programming"
-print(f"String slicing - sample_string[7:]: {sample_string[7:]}")
-print(f"String slicing - sample_string[:6]: {sample_string[:6]}")
-print(f"String slicing - sample_string[::2]: {sample_string[::2]}")
-
-
-
-
-# Question D: Think of an application that uses nested list with the following operations
-
-
-print("\n\nD. NESTED LIST APPLICATION - COURSE MANAGEMENT SYSTEM")
-print("-" * 50)
-
-
-def display_courses(courses):
-    """Display all courses and their students in a formatted way"""
-    print("\nCOURSE LISTING:")
-    print("-" * 30)
-    
-    for i, course in enumerate(courses):
-        print(f"Course {i+1}: {course[0]}")
-        print("Students:")
-        if len(course[1]) == 0:
-            print("  No students enrolled")
-        else:
-            for j, student in enumerate(course[1]):
-                print(f"  {j+1}. {student}")
-        print("-" * 30)
-
-
-# Initialize a nested list structure for courses
-# Each course is a list with [course_name, [list_of_students]]
-courses = [
-    ["Python Programming", ["Alice", "Bob", "Charlie"]],
-    ["Data Structures", ["David", "Eve", "Frank"]],
-    ["Machine Learning", ["Grace", "Hannah"]],
-    ["Web Development", []]
+# Basic slicing
+print("Original list:", numbers)
+print("Slicing from index 2 to 5:", numbers[2:6])  # elements from index 2 to 5
+print("Slicing with step 2:", numbers[::2])  # every second element
+print("Slicing in reverse:", numbers[::-1])  # reverse the list
+print("Slicing from index 3 to end:", numbers[3:])  # from index 3 to end
+print("Slicing from start to index 4:", numbers[:5])  # from start to index 4
+print("Negative slicing (-5 to -2):", numbers[-5:-2])  # slicing using negative indices
+
+
+# Initializing a nested list (student name and scores)
+students = [
+    ["Aman", [85, 90, 78]],
+    ["Sharma", [88, 76, 92]],
+    ["Mohan", [80, 85, 88]]
 ]
 
+# 1. Adding an element to a nested list (Adding a new student)
+new_student = ["Rohan", [75, 80, 70]]
+students.append(new_student)
+print("After adding a new student:", students)
 
-print("Initial Course Structure:")
-display_courses(courses)
+# 2. Deleting an element in a nested list (Removing a student)
+students.remove(["Sharma", [88, 76, 92]])
+print("After removing Sharma:", students)
 
+# 3. Reversing the nested list (Reverse student order)
+students.reverse()
+print("Reversed student list:", students)
 
-# 1. Adding an element to a nested list
-print("\n1. ADDING ELEMENTS TO NESTED LISTS")
-print("-" * 40)
-
-
-# Add a new course
-courses.append(["Mobile App Development", []])
-print("Added a new course 'Mobile App Development'")
-
-
-# Add a student to an existing course
-courses[0][1].append("Diana")
-print("Added student 'Diana' to Python Programming")
-
-
-# Add multiple students to a course
-courses[3][1].extend(["Ian", "Jack", "Kelly"])
-print("Added multiple students to Web Development")
-
-
-display_courses(courses)
-
-
-# 2. Deleting an element in a nested list
-print("\n2. DELETING ELEMENTS FROM NESTED LISTS")
-print("-" * 40)
-
-
-# Remove a student from a course
-courses[0][1].remove("Bob")
-print("Removed student 'Bob' from Python Programming")
-
-
-# Remove a course
-removed_course = courses.pop(2)
-print(f"Removed course: {removed_course[0]}")
-
-
-# Remove the last student from Data Structures
-removed_student = courses[1][1].pop()
-print(f"Removed student '{removed_student}' from Data Structures")
-
-
-display_courses(courses)
-
-
-# 3. Reversing the nested list
-print("\n3. REVERSING NESTED LISTS")
-print("-" * 40)
-
-
-# Reverse the order of courses
-courses.reverse()
-print("Reversed the order of courses")
-
-
-# Reverse the order of students in each course
-for course in courses:
-    course[1].reverse()
-print("Reversed the order of students in each course")
-
-
-display_courses(courses)
-
-
-# 4. Using loop structures in nested list
-print("\n4. USING LOOP STRUCTURES WITH NESTED LISTS")
-print("-" * 40)
-
-
-print("Finding courses with more than 2 students:")
-for course in courses:
-    if len(course[1]) > 2:
-        print(f"- {course[0]} has {len(course[1])} students")
-
-
-print("\nCreating a dictionary of students with their courses:")
-student_courses = {}
-for course in courses:
-    course_name = course[0]
-    for student in course[1]:
-        if student not in student_courses:
-            student_courses[student] = []
-        student_courses[student].append(course_name)
-
-
-for student, enrolled_courses in student_courses.items():
-    print(f"{student} is enrolled in: {', '.join(enrolled_courses)}")
-
+# 4. Using loop structures in nested list (Printing all students and scores)
+print("Students and scores:")
+for student in students:
+    print(f"Name: {student[0]}, Scores: {student[1]}")
 
 # 5. Traversing the list using range() and enumerate()
-print("\n5. TRAVERSING NESTED LISTS USING RANGE() AND ENUMERATE()")
-print("-" * 40)
+print("Traversing using range:")
+for i in range(len(students)):
+    print(f"Student {i + 1}: {students[i][0]}, Scores: {students[i][1]}")
 
-
-print("Using range() to traverse courses:")
-for i in range(len(courses)):
-    print(f"Course {i+1}: {courses[i][0]} - {len(courses[i][1])} students")
-
-
-print("\nUsing enumerate() to traverse courses:")
-for i, course in enumerate(courses):
-    print(f"Course {i+1}: {course[0]}")
-    print("Students:")
-    for j, student in enumerate(course[1]):
-        print(f"  Student {j+1}: {student}")
-
-
-# Additional operations that could be useful in a course management system
-print("\nBONUS: ADDITIONAL NESTED LIST OPERATIONS")
-print("-" * 40)
-
-
-# Search for a student across all courses
-search_student = "Alice"
-found_courses = []
-
-
-for course in courses:
-    if search_student in course[1]:
-        found_courses.append(course[0])
-
-
-if found_courses:
-    print(f"{search_student} is enrolled in: {', '.join(found_courses)}")
-else:
-    print(f"{search_student} is not enrolled in any course")
-
-
-# Sort courses by number of students
-courses.sort(key=lambda x: len(x[1]), reverse=True)
-print("\nCourses sorted by number of students (descending):")
-for course in courses:
-    print(f"{course[0]}: {len(course[1])} students")
-
-
-# Find course with highest enrollment
-if courses:
-    max_course = max(courses, key=lambda x: len(x[1]))
-    print(f"\nCourse with highest enrollment: {max_course[0]} with {len(max_course[1])} students")
-
-
+print("Traversing using enumerate:")
+for index, student in enumerate(students, start=1):
+    print(f"Student {index}: {student[0]}, Scores: {student[1]}")
 
 
 Set 2
 
 
 
+# (a) Create a tuple of favourite colors
+colors = ('red', 'blue', 'green')
+print(colors)
 
-# Practice Exercises - IV
+# (b) Tuple with different data types
+data = ('John', 28, 5.9, True)
+print(data)
 
-
-# Question 1: Tuple Operations
-print("=" * 50)
-print("QUESTION 1: TUPLE OPERATIONS")
-print("=" * 50)
-
-
-# (a) Create a tuple of favorite colors
-favorite_colors = ("blue", "green", "purple", "teal", "navy")
-print("(a) Tuple of favorite colors:", favorite_colors)
-
-
-# (b) Create a tuple with different data types
-mixed_tuple = ("Python", 3.14, 42, True, [1, 2, 3], {"name": "John"})
-print("\n(b) Tuple with different data types:", mixed_tuple)
-print("   Types:", [type(item).__name__ for item in mixed_tuple])
-
-
-# (c) Convert tuple to a string
-colors_string = str(favorite_colors)
-print("\n(c) Tuple converted to string:", colors_string)
-print("   Type:", type(colors_string).__name__)
-
+# (c) Convert tuple to string
+tuple_to_convert = ('Python', 'is', 'fun')
+result = ' '.join(tuple_to_convert)
+print(result)
 
 # (d) Find repeated items in a tuple
-repeated_items_tuple = (1, 2, 3, 2, 4, 5, 3, 6, 1, 7)
-repeated_items = set()
-unique_items = set()
+tuple_data = (1, 2, 3, 4, 2, 5, 6, 2)
+print(f"Repeated item: {tuple_data.count(2)} times")
 
-
-for item in repeated_items_tuple:
-    if item in unique_items:
-        repeated_items.add(item)
-    else:
-        unique_items.add(item)
-
-
-print("\n(d) Tuple with repeated items:", repeated_items_tuple)
-print("   Repeated items:", tuple(repeated_items))
-
-
-# (e) Check if an element exists in a tuple
-element_to_check = "purple"
-exists = element_to_check in favorite_colors
-print(f"\n(e) Does '{element_to_check}' exist in the tuple? {exists}")
-
+# (e) Check if element exists in a tuple
+element = 3
+print(element in tuple_data)
 
 # (f) Check if all items in the tuple are identical
-identical_tuple = (5, 5, 5, 5, 5)
-diverse_tuple = (1, 2, 3, 4, 5)
-
-
-def are_all_identical(tup):
-    return all(item == tup[0] for item in tup)
-
-
-print("\n(f) Check if all items are identical:")
-print(f"   {identical_tuple}: {are_all_identical(identical_tuple)}")
-print(f"   {diverse_tuple}: {are_all_identical(diverse_tuple)}")
-
+tuple_data = (5, 5, 5, 5)
+print(all(x == tuple_data[0] for x in tuple_data))
 
 # (g) Swap two tuples
-tuple1 = (1, 2, 3)
-tuple2 = ('a', 'b', 'c')
-print("\n(g) Before swapping:")
-print(f"   tuple1: {tuple1}")
-print(f"   tuple2: {tuple2}")
-
-
+tuple1, tuple2 = (1, 2, 3), (4, 5, 6)
 tuple1, tuple2 = tuple2, tuple1
-print("   After swapping:")
-print(f"   tuple1: {tuple1}")
-print(f"   tuple2: {tuple2}")
-
+print(tuple1, tuple2)
 
 # (h) Copy particular element from one tuple to another
-source_tuple = (10, 20, 30, 40, 50)
-target_tuple = (100, 200, 300)
-element_to_copy = source_tuple[2]  # Copying the third element (30)
-target_tuple = target_tuple + (element_to_copy,)
-
-
-print("\n(h) Copying element from one tuple to another:")
-print(f"   Source tuple: {source_tuple}")
-print(f"   Target tuple after copying: {target_tuple}")
-
+tuple1, tuple2 = (1, 2, 3), (4, 5, 6)
+new_tuple = tuple1 + (tuple2[1],)
+print(new_tuple)
 
 # (i) Reverse a tuple
-original_tuple = (1, 2, 3, 4, 5)
-reversed_tuple = original_tuple[::-1]
-print("\n(i) Reversing a tuple:")
-print(f"   Original: {original_tuple}")
-print(f"   Reversed: {reversed_tuple}")
+tuple_data = (1, 2, 3, 4)
+reversed_tuple = tuple_data[::-1]
+print(reversed_tuple)
 
+# (j) Looping operation
+for item in tuple_data:
+    print(item)
 
-# (j) Perform looping operation
-numbers_tuple = (10, 20, 30, 40, 50)
-print("\n(j) Looping through a tuple:")
-for i, num in enumerate(numbers_tuple):
-    print(f"   Element {i+1}: {num}")
-
-
-# (k) Perform nested operation
+# (k) Nested operation
 nested_tuple = ((1, 2), (3, 4), (5, 6))
-print("\n(k) Nested tuple operations:")
-print(f"   Nested tuple: {nested_tuple}")
-print("   Accessing and printing each element:")
-for outer_index, inner_tuple in enumerate(nested_tuple):
-    for inner_index, value in enumerate(inner_tuple):
-        print(f"      nested_tuple[{outer_index}][{inner_index}] = {value}")
+for a, b in nested_tuple:
+    print(f"{a} - {b}")
+
+# (l) Sort operation
+sorted_tuple = tuple(sorted(tuple_data))
+print(sorted_tuple)
+
+# (m) Enumerate, min, max, sum
+print(list(enumerate(tuple_data)))
+print(min(tuple_data))
+print(max(tuple_data))
+print(sum(tuple_data))
+
+# (n) Indexing and slicing
+print(tuple_data[0])
+print(tuple_data[1:3])
 
 
-# (l) Perform sort operation
-unsorted_tuple = (5, 2, 8, 1, 9, 3)
-sorted_tuple = tuple(sorted(unsorted_tuple))
-print("\n(l) Sorting a tuple:")
-print(f"   Unsorted: {unsorted_tuple}")
-print(f"   Sorted: {sorted_tuple}")
+# Given sets
+integer_set = {21, 12, 22, 33, 65, 6983}
+magic_numbers = {2, 8, 20, 28, 150, 82, 126, 23}
+
+# (a) Remove common elements
+result_set = integer_set - magic_numbers
+print(result_set)
+
+# (b) Union, intersection, difference, equivalence, superset, subset
+print(integer_set.union(magic_numbers))         # Union
+print(integer_set.intersection(magic_numbers))  # Intersection
+print(integer_set.difference(magic_numbers))    # Difference
+print(integer_set == magic_numbers)             # Equivalence
+print(integer_set.issuperset(magic_numbers))    # Superset
+print(integer_set.issubset(magic_numbers))      # Subset
 
 
-# (m) Perform min(), max(), sum() operations
-numbers = (15, 8, 24, 3, 16, 7)
-print("\n(m) min(), max(), sum() operations:")
-print(f"   Tuple: {numbers}")
-print(f"   Minimum: {min(numbers)}")
-print(f"   Maximum: {max(numbers)}")
-print(f"   Sum: {sum(numbers)}")
-
-
-# (n) Indexing and slicing operations
-long_tuple = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-print("\n(n) Indexing and slicing operations:")
-print(f"   Original tuple: {long_tuple}")
-print(f"   First element: {long_tuple[0]}")
-print(f"   Last element: {long_tuple[-1]}")
-print(f"   Slicing (elements 2-5): {long_tuple[2:6]}")
-print(f"   Slicing with step (every 2nd element): {long_tuple[::2]}")
-print(f"   Negative slicing (last 3 elements): {long_tuple[-3:]}")
-
-
-# Question 2: Set Operations
-print("\n" + "=" * 50)
-print("QUESTION 2: SET OPERATIONS")
-print("=" * 50)
-
-
-# Define the sets
-integer_set = {21, 12, 27, 33, 65, 678}
-magic_number = {2, 8, 20, 24, 50, 82, 126}
-
-
-print("integer_set =", integer_set)
-print("magic_number =", magic_number)
-
-
-# (a) Generate a new set by collecting elements from one set that are absent from the other
-absent_elements = integer_set - magic_number
-print("\n(a) Elements in integer_set that are absent in magic_number:")
-print("   ", absent_elements)
-
-
-# (b) Create a program to perform set operations
-def display_set_operations(set1, set2):
-    print("\n(b) Set Operations:")
-    print(f"   Set A: {set1}")
-    print(f"   Set B: {set2}")
-    
-    # Union
-    union_result = set1.union(set2)
-    print(f"   Union (A ∪ B): {union_result}")
-    
-    # Intersection
-    intersection_result = set1.intersection(set2)
-    print(f"   Intersection (A ∩ B): {intersection_result}")
-    
-    # Difference
-    difference_a_b = set1.difference(set2)
-    difference_b_a = set2.difference(set1)
-    print(f"   Difference (A - B): {difference_a_b}")
-    print(f"   Difference (B - A): {difference_b_a}")
-    
-    # Symmetric Difference
-    symmetric_diff = set1.symmetric_difference(set2)
-    print(f"   Symmetric Difference: {symmetric_diff}")
-    
-    # Equality
-    is_equal = set1 == set2
-    print(f"   Are sets equal? {is_equal}")
-    
-    # Subset and Superset
-    is_subset = set1.issubset(set2)
-    is_superset = set1.issuperset(set2)
-    print(f"   Is A subset of B? {is_subset}")
-    print(f"   Is A superset of B? {is_superset}")
-
-
-display_set_operations(integer_set, magic_number)
-
-
-# Let's also create a subset relationship to show that operation
-set_a = {1, 2, 3, 4, 5}
-set_b = {1, 2, 3}
-print("\n   Additional subset/superset example:")
-print(f"   Set A: {set_a}")
-print(f"   Set B: {set_b}")
-print(f"   Is B subset of A? {set_b.issubset(set_a)}")
-print(f"   Is A superset of B? {set_a.issuperset(set_b)}")
-
-
-# Question 3: Dictionary Operations
-print("\n" + "=" * 50)
-print("QUESTION 3: DICTIONARY OPERATIONS")
-print("=" * 50)
-
-
-# (a) Dictionary creation
-student_dict = {
-    "name": "John Smith",
-    "age": 20,
-    "major": "Computer Science",
-    "year": 2,
-    "gpa": 3.8
-}
-
-
-print("(a) Dictionary creation:")
-print("   ", student_dict)
-
+# (a) Create a dictionary
+my_dict = {'name': 'John', 'age': 28, 'city': 'New York'}
+print(my_dict)
 
 # (b) Dictionary of tuples
-tuple_dict = {
-    "colors": ("red", "green", "blue"),
-    "numbers": (1, 2, 3, 4, 5),
-    "mixed": ("Python", 3.14, True)
-}
-
-
-print("\n(b) Dictionary of tuples:")
-print("   ", tuple_dict)
-
+tuple_dict = {'colors': ('red', 'green', 'blue')}
+print(tuple_dict)
 
 # (c) Member operation
-print("\n(c) Member operations:")
-print(f"   Is 'name' a key in student_dict? {'name' in student_dict}")
-print(f"   Is 'address' a key in student_dict? {'address' in student_dict}")
-print(f"   Is 'John Smith' a value in student_dict? {'John Smith' in student_dict.values()}")
+print('name' in my_dict)
+print('gender' not in my_dict)
 
+# (d) Add element to the dictionary
+my_dict['gender'] = 'Male'
+print(my_dict)
 
-# (d) Addition of elements to the dictionary
-student_dict["address"] = "123 Campus Drive"
-student_dict["email"] = "john.smith@university.edu"
+# (e) Remove elements from the dictionary
+my_dict.pop('age')
+print(my_dict)
 
-
-print("\n(d) After adding elements:")
-print("   ", student_dict)
-
-
-# (e) Remove elements of the dictionary
-removed_value = student_dict.pop("gpa")
-del student_dict["year"]
-
-
-print("\n(e) After removing elements:")
-print(f"   Removed value: {removed_value}")
-print("   ", student_dict)
-
-
-# (f) Copying the elements of the dictionary
-copied_dict = student_dict.copy()
-deep_copied_dict = dict(student_dict)
-
-
-print("\n(f) Copying dictionaries:")
-print(f"   Original: {student_dict}")
-print(f"   Copied: {copied_dict}")
-print(f"   Deep copied: {deep_copied_dict}")
-
-
-# Modify the copied dictionary to show they are independent
-copied_dict["name"] = "Jane Doe"
-print(f"   After modifying copied dict:")
-print(f"   Original: {student_dict}")
-print(f"   Modified copy: {copied_dict}")
-
+# (f) Copying elements from one dictionary to another
+new_dict = my_dict.copy()
+print(new_dict)
 
 # (g) Nested dictionary
 nested_dict = {
-    "student1": {
-        "name": "Alice",
-        "grades": {"math": 90, "science": 85, "history": 88}
-    },
-    "student2": {
-        "name": "Bob",
-        "grades": {"math": 78, "science": 92, "history": 84}
-    }
+    'person': {'name': 'John', 'age': 28},
+    'address': {'city': 'New York', 'zip': 10001}
 }
+print(nested_dict)
 
+# (h) Loop over a dictionary
+for key, value in my_dict.items():
+    print(f"{key}: {value}")
 
-print("\n(g) Nested dictionary:")
-print("   ", nested_dict)
-print("\n   Accessing nested values:")
-print(f"   Student1's name: {nested_dict['student1']['name']}")
-print(f"   Student2's science grade: {nested_dict['student2']['grades']['science']}")
-
-
-# (h) Looping over a dictionary
-print("\n(h) Looping over a dictionary:")
-
-
-print("   Looping through keys:")
-for key in student_dict:
-    print(f"      {key}")
-
-
-print("\n   Looping through values:")
-for value in student_dict.values():
-    print(f"      {value}")
-
-
-print("\n   Looping through items (key-value pairs):")
-for key, value in student_dict.items():
-    print(f"      {key}: {value}")
-
-
-# Additional dictionary operations
-print("\n   Additional dictionary operations:")
-
-
-# Dictionary comprehension
-squares_dict = {x: x**2 for x in range(1, 6)}
-print(f"   Dictionary comprehension (squares): {squares_dict}")
-
-
-# Get with default value
-print(f"   Get with default: {student_dict.get('phone', 'Not available')}")
-
-
-# Update dictionary
-student_dict.update({"phone": "555-1234", "major": "Data Science"})
-print(f"   After update: {student_dict}")
-
-
-# Clear dictionary
-temp_dict = {"temp": "value"}
-temp_dict.clear()
-print(f"   After clear: {temp_dict}")
 
 
 
@@ -820,161 +277,95 @@ Set 3
 
 
 
-# 1. Program to check if all words are in upper case
-def check_upper_case(text):
-    # Split the text into words
-    words = text.split()
-    
-    # Check if all words are uppercase
-    for word in words:
-        if not word.isupper():
-            return False
-    
-    return True
+# 1. Check if all words are uppercase
+def check_uppercase(sentence):
+    words = sentence.split()
+    all_upper = all(word.isupper() for word in words)
+    return all_upper
+sentence = "HELLO WORLD PYTHON"
+print(check_uppercase(sentence))
 
+# 2. String Operations
+# (a) Capitalize and lowercase alternately
+def capitalize_lowercase_alternate(text):
+    return ''.join(char.upper() if i % 2 == 0 else char.lower() for i, char in enumerate(text))
+text = "pythonprogramming"
+print(capitalize_lowercase_alternate(text))
 
-# Example usage
-print("Exercise 1 - Check uppercase:")
-print(check_upper_case("HELLO WORLD"))  # True
-print(check_upper_case("HELLO world"))  # False
+# (b) Reverse string
+text = "Python"
+print(text[::-1])
 
+# (c) Concatenate two strings
+s1, s2 = "Hello", "World"
+print(s1 + s2)
+print("%s %s" % (s1, s2))
+print(f"{s1} {s2}")
+print(' '.join([s1, s2]))
 
-# 2. Program to perform various string operations
-def string_operations(input_string):
-    results = {}
-    
-    # a) Capitalize and lowercase intermittently
-    new_string = ""
-    for i, char in enumerate(input_string):
-        if i % 2 == 0:
-            new_string += char.upper()
-        else:
-            new_string += char.lower()
-    results["capitalized_intermittent"] = new_string
-    
-    # b) Reverse the input string
-    results["reversed"] = input_string[::-1]
-    
-    # c) Concatenate two strings using +, %, f-string and join
-    string1 = input_string
-    string2 = "Python"
-    results["concatenation_plus"] = string1 + " " + string2
-    results["concatenation_percent"] = "%s %s" % (string1, string2)
-    results["concatenation_fstring"] = f"{string1} {string2}"
-    results["concatenation_join"] = " ".join([string1, string2])
-    
-    # d) Perform membership operation
-    results["contains_p"] = "p" in input_string.lower()
-    results["contains_y"] = "y" in input_string.lower()
-    
-    # e) Perform slicing operation
-    results["first_three"] = input_string[:3]
-    results["last_three"] = input_string[-3:]
-    results["every_second"] = input_string[::2]
-    
-    return results
+# (d) Member operation
+s = "Python"
+print('P' in s)
+print('Z' not in s)
 
+# (e) Slicing operation
+s = "Python"
+print(s[0:3], s[-3:], s[::2])
 
-# Example usage
-print("\nExercise 2 - String operations:")
-result = string_operations("Hello")
-for key, value in result.items():
-    print(f"{key}: {value}")
+# 3. String Methods
+# (a) isdigit()
+print("123".isdigit())
 
+# (b) isalpha()
+print("Python".isalpha())
 
-# 3. Program to execute various string methods
-def string_methods(input_string):
-    results = {}
-    
-    # a) isalnum() - checks if all characters are alphanumeric
-    results["isalnum"] = input_string.isalnum()
-    
-    # b) isalpha() - checks if all characters are alphabetic
-    results["isalpha"] = input_string.isalpha()
-    
-    # c) islower() - checks if all characters are lowercase
-    results["islower"] = input_string.islower()
-    
-    # d) isupper() - checks if all characters are uppercase
-    results["isupper"] = input_string.isupper()
-    
-    # e) istitle() - checks if string is titlecased
-    results["istitle"] = input_string.istitle()
-    
-    # f) swapcase() - swaps case of all characters
-    results["swapcase"] = input_string.swapcase()
-    
-    # g) casefold() - returns a casefolded string for caseless matching
-    results["casefold"] = input_string.casefold()
-    
-    # h) index() - returns index of first occurrence of substring
-    try:
-        results["index_of_first_a"] = input_string.index("a")
-    except ValueError:
-        results["index_of_first_a"] = "Not found"
-    
-    # i) rfind() - returns highest index of substring
-    results["rfind_a"] = input_string.rfind("a")
-    
-    # j) strip() - removes leading and trailing whitespace
-    results["strip"] = input_string.strip()
-    
-    # k) rstrip() - removes trailing whitespace
-    results["rstrip"] = input_string.rstrip()
-    
-    # l) join() - joins elements of an iterable
-    results["join"] = "-".join(input_string)
-    
-    # m) min() - returns minimum character
-    if input_string:
-        results["min"] = min(input_string)
-    else:
-        results["min"] = "Empty string"
-    
-    # n) max() - returns maximum character
-    if input_string:
-        results["max"] = max(input_string)
-    else:
-        results["max"] = "Empty string"
-    
-    # o) replace() - replaces occurrences of a substring
-    results["replace_a_with_X"] = input_string.replace("a", "X")
-    
-    # p) re.fullmatch() - checks if the whole string matches the pattern
-    import re
-    results["fullmatch_letters"] = bool(re.fullmatch(r'[a-zA-Z]+', input_string))
-    
-    # q) re.split() - splits string by pattern
-    results["split_by_vowels"] = re.split(r'[aeiou]', input_string)
-    
-    return results
+# (c) islower()
+print("python".islower())
 
+# (d) isupper()
+print("PYTHON".isupper())
 
-# Example usage
-print("\nExercise 3 - String methods:")
-result = string_methods("Hello World")
-for key, value in result.items():
-    print(f"{key}: {value}")
+# (e) title()
+print("python programming".title())
 
+# (f) swapcase()
+print("PyThOn".swapcase())
 
-# 4. Program to show string traversal using for loop with range
-def string_traversal(input_string):
-    result = []
-    
-    # Traverse string using for loop with range
-    for i in range(len(input_string)):
-        result.append(f"Character at index {i}: {input_string[i]}")
-    
-    # Reverse traversal
-    result.append("\nReverse traversal:")
-    for i in range(len(input_string)-1, -1, -1):
-        result.append(f"Character at index {i}: {input_string[i]}")
-    
-    return result
+# (g) casefold()
+print("PYTHON".casefold())
 
+# (h) index()
+print("Python Programming".index('o'))
 
-# Example usage
-print("\nExercise 4 - String traversal:")
-result = string_traversal("Python")
-for line in result:
-    print(line)
+# (i) find()
+print("Python Programming".find('o'))
+
+# (j) strip()
+print("  Python  ".strip())
+
+# (k) rstrip()
+print("Python  ".rstrip())
+
+# (l) join()
+print(' '.join(['Python', 'is', 'fun']))
+
+# (m) min()
+print(min("python"))
+
+# (n) max()
+print(max("python"))
+
+# (o) re.findall()
+import re
+print(re.findall(r"[a-z]+", "Python is fun"))
+
+# (p) re.fullmatch()
+print(bool(re.fullmatch(r"[A-Za-z]+", "Python")))
+
+# (q) re.split()
+print(re.split(r",", "Python,is,fun"))
+
+# 4. String Traversal using for loop and range
+s = "Python"
+for i in range(len(s)):
+    print(s[i])
