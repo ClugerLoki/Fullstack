@@ -1,0 +1,52 @@
+export class Queue<T> {
+    private items: T[] = [];
+
+    enqueue(item: T): void {
+        this.items.push(item);
+    }
+
+    dequeue(): T | undefined {
+        return this.items.shift();
+    }
+
+    peek(): T | undefined {
+        return this.items[0];
+    }
+
+    isEmpty(): boolean {
+        return this.items.length === 0;
+    }
+}
+import { Queue } from "./Queue";
+
+class LibrarySystem {
+    private requestQueue: Queue<string> = new Queue();
+
+    requestBook(studentName: string): void {
+        console.log(`${studentName} has requested a book.`);
+        this.requestQueue.enqueue(studentName);
+    }
+
+    processNextRequest(): void {
+        if (this.requestQueue.isEmpty()) {
+            console.log("No pending book requests.");
+        } else {
+            const student = this.requestQueue.dequeue();
+            console.log(`Book assigned to ${student}.`);
+        }
+    }
+}
+
+// Example Usage
+const library = new LibrarySystem();
+library.requestBook("Alice");
+library.requestBook("Bob");
+library.requestBook("Charlie");
+
+library.processNextRequest(); // Assign book to Alice
+library.processNextRequest(); // Assign book to Bob
+library.processNextRequest(); // Assign book to Charlie
+library.processNextRequest(); // No pending book requests
+
+
+
