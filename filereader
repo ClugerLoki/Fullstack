@@ -1,0 +1,57 @@
+const fs = require('fs');
+const path = require('path');
+
+// Path to the .env file
+const envFilePath = path.resolve(process.cwd(), '.env');
+
+try {
+    // Check if file exists
+    if (!fs.existsSync(envFilePath)) {
+        console.error(`.env file not found at ${envFilePath}`);
+        process.exit(1);
+    }
+    
+    // Read the file content
+    const envFileContent = fs.readFileSync(envFilePath, 'utf8');
+    
+    // Parse the content into an object
+    const envVariables = {};
+    
+    // Split by line breaks
+    const lines = envFileContent.split('\n');
+    
+    console.log('=== Environment Variables ===');
+    
+    // Process each line
+    lines.forEach(line => {
+        // Skip empty lines and comments
+        if (!line || line.trim() === '' || line.startsWith('#')) {
+            return;
+        }
+        
+        // Split the line by the first equals sign
+        const equalsIndex = line.indexOf('=');
+        if (equalsIndex !== -1) {
+            const key = line.substring(0, equalsIndex).trim();
+            let value = line.substring(equalsIndex + 1).trim();
+            
+            // Remove quotes if present
+            if ((value.startsWith('"') && value.endsWith('"')) || 
+                (value.startsWith("'") && value.endsWith("'"))) {
+                value = value.slice(1, -1);
+            }
+            
+            // Store in our object
+            envVariables[key] = value;
+            
+            // Print to console
+            console.log(`${key}: ${value}`);
+        }
+    });
+    
+    console.log('\nTotal variables found:', Object.keys(envVariables).length);
+    
+} catch (error) {
+    console.error(`Error reading .env file: ${error.message}`);
+    process.exit(1);
+}
