@@ -1,0 +1,61 @@
+// lighting.ts
+export namespace SmartHome.Lighting {
+    export class Light {
+        private isOn: boolean = false;
+        
+        turnOn(): void {
+            this.isOn = true;
+            console.log("Light turned ON");
+        }
+        
+        turnOff(): void {
+            this.isOn = false;
+            console.log("Light turned OFF");
+        }
+    }
+}
+
+// climateControl.ts
+export namespace SmartHome.ClimateControl {
+    export class AirConditioner {
+        private temperature: number = 24;
+        
+        setTemperature(temp: number): void {
+            this.temperature = temp;
+            console.log(`Air Conditioner set to ${this.temperature}°C`);
+        }
+    }
+}
+
+// security.ts
+export namespace SmartHome.Security {
+    export class SecuritySystem {
+        private isArmed: boolean = false;
+        
+        arm(): void {
+            this.isArmed = true;
+            console.log("Security System ARMED");
+        }
+        
+        disarm(): void {
+            this.isArmed = false;
+            console.log("Security System DISARMED");
+        }
+    }
+}
+
+// main.ts
+import { SmartHome } from "./lighting";
+import { SmartHome as Climate } from "./climateControl";
+import { SmartHome as Security } from "./security";
+
+const light = new SmartHome.Lighting.Light();
+light.turnOn();
+light.turnOff();
+
+const ac = new Climate.ClimateControl.AirConditioner();
+ac.setTemperature(22);
+
+const security = new Security.Security.SecuritySystem();
+security.arm();
+security.disarm();
