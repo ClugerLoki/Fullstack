@@ -1,0 +1,54 @@
+const fs = require('fs');
+const readline = require('readline');
+
+// Input and output file paths
+const inputLogFile = 'application.log';
+const outputErrorLogFile = 'error.log';
+
+// Create a readable stream for the input file
+const readStream = fs.createReadStream(inputLogFile);
+
+// Create a writable stream for the output file
+const writeStream = fs.createWriteStream(outputErrorLogFile, { flags: 'a' });
+
+// Create interface to read the file line by line
+const rl = readline.createInterface({
+    input: readStream,
+    crlfDelay: Infinity
+});
+
+console.log(`Reading from log file: ${inputLogFile}`);
+console.log(`Writing errors to: ${outputErrorLogFile}`);
+
+// Counter for errors found
+let errorCount = 0;
+
+// Process each line
+rl.on('line', (line) => {
+    // Check if the line contains error messages
+    // This is a simple check - you might need more complex patterns
+    if (line.toLowerCase().includes('error') || 
+        line.toLowerCase().includes('exception') || 
+        line.toLowerCase().includes('fail') ||
+        line.match(/\b[45]\d\d\b/)) { // HTTP 4xx or 5xx status codes
+        
+        // Write the error line to the output file
+        writeStream.write(line + '\n');
+        errorCount++;
+    }
+});
+
+// Handle the end of file
+rl.on('close', () => {
+    console.log(`Extraction complete. Found ${errorCount} error entries.`);
+    writeStream.end();
+});
+
+// Handle errors
+readStream.on('error', (err) => {
+    console.error(`Error reading the log file: ${err.message}`);
+});
+
+writeStream.on('error', (err) => {
+    console.error(`Error writing to the error log file: ${err.message}`);
+});
