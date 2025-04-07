@@ -1,0 +1,36 @@
+class Employee {
+    constructor(protected name: string, protected id: number, protected salary: number) {}
+
+    displayDetails(): void {
+        console.log(`Employee ID: ${this.id}, Name: ${this.name}, Salary: $${this.salary}`);
+    }
+}
+
+class FullTimeEmployee extends Employee {
+    constructor(name: string, id: number, private monthlySalary: number) {
+        super(name, id, monthlySalary);
+    }
+
+    calculateSalary(): void {
+        this.salary = this.monthlySalary;
+    }
+}
+
+class PartTimeEmployee extends Employee {
+    constructor(name: string, id: number, private hourlyWage: number, private hoursWorked: number) {
+        super(name, id, 0);
+    }
+
+    calculateSalary(): void {
+        this.salary = this.hourlyWage * this.hoursWorked;
+    }
+}
+
+// Example Usage
+const fullTimeEmp = new FullTimeEmployee("Alice", 101, 5000);
+fullTimeEmp.calculateSalary();
+fullTimeEmp.displayDetails();
+
+const partTimeEmp = new PartTimeEmployee("Bob", 102, 20, 80);
+partTimeEmp.calculateSalary();
+partTimeEmp.displayDetails();
