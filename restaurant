@@ -1,0 +1,111 @@
+import React, { useState } from 'react';
+
+function App() {
+  const [customers, setCustomers] = useState([]);
+  const [foodItems] = useState({
+    "Pizza": ["Cheese", "Flour", "Tomato"],
+    "Burger": ["Bun", "Lettuce", "Patty"],
+    "Pasta": ["Pasta", "Cream", "Mushrooms"]
+  });
+
+  const [shopkeepers] = useState({
+    "Cheese": "DairyShop",
+    "Flour": "GrainStore",
+    "Tomato": "VeggieMart",
+    "Bun": "Bakery",
+    "Lettuce": "VeggieMart",
+    "Patty": "MeatStore",
+    "Pasta": "ItalianStore",
+    "Cream": "DairyShop",
+    "Mushrooms": "VeggieMart"
+  });
+
+  const handleAddCustomer = (name, food) => {
+    const waiter = "Waiter-1";
+    const ingredients = foodItems[food] || [];
+    const shopkeeperList = ingredients.map(item => ({
+      item,
+      shopkeeper: shopkeepers[item]
+    }));
+
+    const newCustomer = {
+      name,
+      food,
+      waiter,
+      chef: "Chef-1",
+      ingredients,
+      shopkeepers: shopkeeperList
+    };
+
+    setCustomers([...customers, newCustomer]);
+  };
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>🍴 Restaurant System</h1>
+      <CustomerForm onAddCustomer={handleAddCustomer} menu={Object.keys(foodItems)} />
+      <CustomerList customers={customers} />
+    </div>
+  );
+}
+
+// Functional Component: Customer Form
+function CustomerForm({ onAddCustomer, menu }) {
+  const [name, setName] = useState('');
+  const [food, setFood] = useState(menu[0]);
+
+  const handleSubmit = () => {
+    if (!name || !food) return;
+    onAddCustomer(name, food);
+    setName('');
+  };
+
+  return (
+    <div style={{ marginBottom: '20px' }}>
+      <h2>🧍 Add Customer</h2>
+      <input
+        type="text"
+        placeholder="Customer Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <select value={food} onChange={(e) => setFood(e.target.value)} style={{ marginLeft: '10px' }}>
+        {menu.map((item, idx) => (
+          <option key={idx} value={item}>{item}</option>
+        ))}
+      </select>
+      <button onClick={handleSubmit} style={{ marginLeft: '10px' }}>Order</button>
+    </div>
+  );
+}
+
+// Class Component: Customer List
+class CustomerList extends React.Component {
+  render() {
+    const { customers } = this.props;
+    return (
+      <div>
+        <h2>📋 Order Summary</h2>
+        {customers.length === 0 ? <p>No orders yet.</p> :
+          customers.map((cust, idx) => (
+            <div key={idx} style={{ border: '1px solid #aaa', padding: '10px', marginBottom: '10px' }}>
+              <p><strong>Customer:</strong> {cust.name}</p>
+              <p><strong>Food:</strong> {cust.food}</p>
+              <p><strong>Waiter:</strong> {cust.waiter}</p>
+              <p><strong>Chef:</strong> {cust.chef}</p>
+              <p><strong>Ingredients:</strong> {cust.ingredients.join(', ')}</p>
+              <p><strong>Shopkeepers:</strong></p>
+              <ul>
+                {cust.shopkeepers.map((item, i) => (
+                  <li key={i}>{item.item} from {item.shopkeeper}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    );
+  }
+}
+
+export default App;
