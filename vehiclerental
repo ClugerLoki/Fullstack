@@ -1,0 +1,36 @@
+class Vehicle {
+    constructor(protected brand: string, protected model: string, protected rentalPrice: number) {}
+
+    displayDetails(): void {
+        console.log(`Brand: ${this.brand}, Model: ${this.model}, Rental Price per day: $${this.rentalPrice}`);
+    }
+}
+
+class Car extends Vehicle {
+    constructor(brand: string, model: string, rentalPrice: number, private numberOfSeats: number) {
+        super(brand, model, rentalPrice);
+    }
+
+    calculateRentalCost(days: number): number {
+        return this.rentalPrice * days;
+    }
+}
+
+class Bike extends Vehicle {
+    constructor(brand: string, model: string, rentalPrice: number, private engineCC: number) {
+        super(brand, model, rentalPrice);
+    }
+
+    calculateRentalCost(days: number): number {
+        return this.rentalPrice * days;
+    }
+}
+
+// Example Usage
+const car = new Car("Toyota", "Corolla", 50, 5);
+car.displayDetails();
+console.log(`Total Rental Cost for 3 days: $${car.calculateRentalCost(3)}`);
+
+const bike = new Bike("Yamaha", "R15", 30, 150);
+bike.displayDetails();
+console.log(`Total Rental Cost for 5 days: $${bike.calculateRentalCost(5)}`);
