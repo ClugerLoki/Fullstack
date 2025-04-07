@@ -1,66 +1,46 @@
-class OrderNode {
-    orderID: number;
-    next: OrderNode | null = null;
+class RailwayReservationSystem {
+    private waitlist: string[] = [];
 
-    constructor(orderID: number) {
-        this.orderID = orderID;
+    // Add a passenger to the waitlist (push onto stack)
+    addPassenger(name: string): void {
+        this.waitlist.push(name);
+        console.log(`${name} added to the waitlist.`);
     }
-}
 
-class OrderQueue {
-    private head: OrderNode | null = null;
-    private tail: OrderNode | null = null;
-
-    // Add a new order to the queue
-    addOrder(orderID: number): void {
-        const newNode = new OrderNode(orderID);
-        if (!this.tail) {
-            this.head = this.tail = newNode;
+    // Assign seat to the last added passenger (pop from stack)
+    assignSeat(): void {
+        if (this.waitlist.length === 0) {
+            console.log("No passengers in the waitlist.");
         } else {
-            this.tail.next = newNode;
-            this.tail = newNode;
+            const passenger = this.waitlist.pop();
+            console.log(`Seat assigned to ${passenger}.`);
         }
-        console.log(`Order ${orderID} has been added.`);
     }
 
-    // Process the first order in the queue
-    processOrder(): void {
-        if (!this.head) {
-            console.log("No pending orders.");
-            return;
+    // Display the current waitlist
+    showWaitlist(): void {
+        if (this.waitlist.length === 0) {
+            console.log("Waitlist is currently empty.");
+        } else {
+            console.log("Current Waitlist (Top = Last Added):");
+            for (let i = this.waitlist.length - 1; i >= 0; i--) {
+                console.log(`${this.waitlist.length - i}. ${this.waitlist[i]}`);
+            }
         }
-        const processedOrder = this.head.orderID;
-        this.head = this.head.next;
-        if (!this.head) {
-            this.tail = null;
-        }
-        console.log(`Order ${processedOrder} has been processed.`);
-    }
-
-    // Display all pending orders
-    showOrders(): void {
-        if (!this.head) {
-            console.log("No pending orders.");
-            return;
-        }
-        let current: OrderNode | null = this.head;
-        const orders: number[] = [];
-        while (current) {
-            orders.push(current.orderID);
-            current = current.next;
-        }
-        console.log("Pending orders:", orders);
     }
 }
 
-// Example usage
-const orderQueue = new OrderQueue();
-orderQueue.addOrder(101);
-orderQueue.addOrder(102);
-orderQueue.addOrder(103);
-orderQueue.showOrders();
-orderQueue.processOrder(); // Process 101
-orderQueue.showOrders();
-orderQueue.processOrder(); // Process 102
-orderQueue.processOrder(); // Process 103
-orderQueue.processOrder(); // No pending orders
+// Example Usage
+const reservationSystem = new RailwayReservationSystem();
+
+reservationSystem.addPassenger("Aman");
+reservationSystem.addPassenger("Kumar");
+reservationSystem.addPassenger("Sharma");
+
+reservationSystem.showWaitlist();
+
+reservationSystem.assignSeat(); // Charlie gets the seat
+reservationSystem.assignSeat(); // Bob gets the seat
+
+reservationSystem.showWaitlist();
+
