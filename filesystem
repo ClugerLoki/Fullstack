@@ -1,0 +1,28 @@
+const fs = require('fs');
+const fileName = 'data.txt';
+
+// 1. Create a file and write content
+fs.writeFile(fileName, 'Initial content.\n', (err) => {
+    if (err) throw err;
+    console.log('File created and content written.');
+
+    // 2. Read content
+    fs.readFile(fileName, 'utf8', (err, data) => {
+        if (err) throw err;
+        console.log('Content of file:', data);
+
+        // 3. Append content
+        fs.appendFile(fileName, 'Appended content.\n', (err) => {
+            if (err) throw err;
+            console.log('New content appended.');
+
+            // 4. Delete after 10 seconds
+            setTimeout(() => {
+                fs.unlink(fileName, (err) => {
+                    if (err) throw err;
+                    console.log('File deleted after 10 seconds.');
+                });
+            }, 10000);
+        });
+    });
+});
