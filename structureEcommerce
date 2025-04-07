@@ -1,0 +1,58 @@
+// product.ts
+export class Product {
+    constructor(public id: number, public name: string, public price: number) {}
+}
+
+// customer.ts
+export class Customer {
+    constructor(public id: number, public name: string) {}
+}
+
+// order.ts
+import { Product } from "./product";
+import { Customer } from "./customer";
+
+export class Order {
+    constructor(public customer: Customer, public products: Product[], public totalAmount: number) {}
+}
+
+// shoppingCart.ts
+import { Product } from "./product";
+import { Customer } from "./customer";
+import { Order } from "./order";
+
+export namespace ECommerceSystem {
+    export class ShoppingCart {
+        private products: Product[] = [];
+
+        constructor(private customer: Customer) {}
+
+        addProduct(product: Product): void {
+            this.products.push(product);
+            console.log(`${product.name} added to cart.`);
+        }
+
+        placeOrder(): Order {
+            const totalAmount = this.products.reduce((sum, product) => sum + product.price, 0);
+            const order = new Order(this.customer, this.products, totalAmount);
+            this.products = []; // Empty the cart after order is placed
+            console.log(`Order placed for ${this.customer.name}. Total: $${totalAmount}`);
+            return order;
+        }
+    }
+}
+
+// main.ts
+import { Product } from "./product";
+import { Customer } from "./customer";
+import { ECommerceSystem } from "./shoppingCart";
+
+const customer = new Customer(1, "John Doe");
+const cart = new ECommerceSystem.ShoppingCart(customer);
+
+const product1 = new Product(101, "Laptop", 1200);
+const product2 = new Product(102, "Mouse", 25);
+
+cart.addProduct(product1);
+cart.addProduct(product2);
+cart.placeOrder();
