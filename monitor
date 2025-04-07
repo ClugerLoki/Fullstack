@@ -1,15 +1,46 @@
-// monitor.js
 const fs = require('fs');
 const path = require('path');
 
-const dir = './watchedDir';
+// Directory to monitor
+const targetDir = './monitored_directory';
 
-if (!fs.existsSync(dir)) {
-  fs.mkdirSync(dir);
+// Ensure the directory exists
+if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir);
+    console.log(`Created directory: ${targetDir}`);
 }
 
-fs.watch(dir, (eventType, filename) => {
-  if (filename) {
-    console.log(`[${new Date().toLocaleTimeString()}] ${filename} was ${eventType}`);
-  }
+// Log file path
+const logFilePath = path.join(__dirname, 'directory_changes.log');
+
+// Function to log changes
+function logChange(changeType, filename) {
+    const timestamp = new Date().toISOString();
+    const logEntry = `${timestamp} - ${changeType}: ${filename}\n`;
+    
+    fs.appendFileSync(logFilePath, logEntry);
+    console.log(logEntry.trim());
+}
+
+console.log(`Monitoring directory: ${targetDir}`);
+console.log(`Logging changes to: ${logFilePath}`);
+
+// Start watching the directory
+fs.watch(targetDir, (eventType, filename) => {
+    if (filename) {
+        // Check if the file exists to determine if it was added/modified or deleted
+        const filePath = path.join(targetDir, filename);
+        const fileExists = fs.existsSync(filePath);
+        
+        if (eventType === 'rename') {
+            // In fs.watch, 'rename' can mean file was added or deleted
+            const changeType = fileExists ? 'ADDED' : 'DELETED';
+            logChange(changeType, filename);
+        } else if (eventType === 'change') {
+            // 'change' means file was modified
+            logChange('MODIFIED', filename);
+        }
+    }
 });
+
+console.log('Directory monitor running. Press Ctrl+C to stop.');
